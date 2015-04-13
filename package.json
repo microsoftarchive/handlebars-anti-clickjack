@@ -12,12 +12,10 @@
   },
   "keywords": [
     "handlebars",
-    "helper"
+    "clickjack",
+    "security"
   ],
-  "author": "Adam Schroder",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wunderlist/handlebars-anti-clickjack/issues"
-  },
-  "homepage": "https://github.com/wunderlist/handlebars-anti-clickjack"
+  "optionalDependencies": {
+    "handlebars": "^3.0.1"
+  }
 }
