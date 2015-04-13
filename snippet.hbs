@@ -1,0 +1,19 @@
+<style class="{{id}}">
+body { display:none !important; }
+</style>
+
+<script class="{{id}}" type="text/javascript">
+(function (window, document) {
+  var self = window.self;
+  var top = window.top;
+  if (self === top) {
+    var nodes = document.getElementsByClassName('{{id}}');
+    nodes = [].slice.call(nodes);
+    nodes.forEach(function (node) {
+      node.parentNode.removeChild(node);
+    });
+  } else {
+    top.location = self.location;
+  }
+}).call(null, this, this.document);
+</script>

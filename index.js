@@ -1,32 +1,33 @@
-module.exports = function (handlebars) {
-  'use strict';
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
+var options = { 'encoding': 'utf8' };
+
+function createId () {
+  return (10e8 * Math.random()).toString(16);
+}
+
+function helper (handlebars) {
+  var baseDir = path.resolve(__dirname);
+  var templateFile = path.resolve(baseDir, 'snippet.hbs');
+  var template = fs.readFileSync(templateFile, options);
 
   handlebars = handlebars || require('handlebars');
+  template = handlebars.compile(template);
 
-  function createId () {
-    var d = new Date();
-    return d.getMinutes() + '-' + d.getMilliseconds() + '-' + d.getHours();
-  }
+  return function () {
+    var markup = template({
+      'id': createId()
+    });
+    return new handlebars.SafeString(markup);
+  };
+}
 
-  var args = arguments;
-  function createHTML () {
-    var id = createId();
+function register (handlebars) {
+  handlebars.registerHelper('anti-clickjack', helper(handlebars));
+}
 
-    return new handlebars.SafeString(
-      "<style id='" + id + "'>" +
-        "body {" +
-          "display:none !important;" +
-        "}" +
-      "</style>" +
-      "<script type='text/javascript'>" +
-        "if (self === top) {" +
-          "var antiClickjack = document.getElementById('" + id + "');" +
-          "antiClickjack.parentNode.removeChild(antiClickjack);" +
-        "} else {" +
-          "top.location = self.location;" +
-        "}" +
-      "</script>");
-  }
-
-  return createHTML();
-};
+module.exports = register;
+module.exports.register = register;
+module.exports.helper = helper;
