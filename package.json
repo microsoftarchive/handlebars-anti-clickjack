@@ -19,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/wunderlist/handlebars-anti-clickjack/issues"
   },
-  "homepage": "https://github.com/wunderlist/handlebars-anti-clickjack",
-  "dependencies": {
-    "handlebars": "3.0.1"
-  }
+  "homepage": "https://github.com/wunderlist/handlebars-anti-clickjack"
 }

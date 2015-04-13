@@ -1,7 +1,7 @@
-var Handlebars = require('handlebars');
-module.exports = function ()  {
-
+module.exports = function (handlebars) {
   'use strict';
+
+  handlebars = handlebars || require('handlebars');
 
   function createId () {
     var d = new Date();
@@ -12,7 +12,7 @@ module.exports = function ()  {
   function createHTML () {
     var id = createId();
 
-    return new Handlebars.SafeString(
+    return new handlebars.SafeString(
       "<style id='" + id + "'>" +
         "body {" +
           "display:none !important;" +
