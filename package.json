@@ -1,6 +1,6 @@
 {
   "name": "handlebars-anti-clickjack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple handlebars helper for preventing iframe click jacking ",
   "main": "index.js",
   "scripts": {
